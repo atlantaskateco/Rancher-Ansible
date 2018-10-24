@@ -2,10 +2,11 @@
 - name: Pull and run the Rancher/server contianer
   docker_container:
       name: "{{ rancher_name }}"
-      image: rancher/server:{{ rancher_version }}
+      image: rancher/rancher:{{ rancher_version }}
       restart_policy: always
       ports:
-        - "{{ rancher_port }}:8080"
+        - "{{ rancher_port }}:443"
+        - "80:80"
 
 - name: Wait for the Rancher server to start
   action: command docker logs {{ rancher_name }}
